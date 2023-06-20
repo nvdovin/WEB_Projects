@@ -362,7 +362,6 @@ class MyServer(BaseHTTPRequestHandler):
 
     def do_GET(self):
         """ Метод для обработки входящих GET-запросов """
-
         page_content = self.__page_html_content()
 
         self.send_response(200)  # Отправка кода ответа
