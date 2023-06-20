@@ -367,7 +367,8 @@ class MyServer(BaseHTTPRequestHandler):
         self.send_response(200)  # Отправка кода ответа
         self.send_header("Content-type", "application/json")  # Отправка типа данных, который будет передаваться
         self.end_headers()  # Завершение формирования заголовков ответа
-        self.wfile.write(bytes(page_content, "utf-8"))  # Тело ответа
+        with open("index_1.html", "rb") as html_file:
+            self.wfile.write(bytes(html_file.read()))  # Тело ответа
 
 
 if __name__ == "__main__":
