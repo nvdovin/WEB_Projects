@@ -1,4 +1,5 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
+from urllib.parse import parse_qs, urlparse
 
 
 # Для начала определим настройки запуска
@@ -15,11 +16,12 @@ class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
         """ Метод для обработки входящих GET-запросов """
 
+        print(parse_qs(urlparse(self.path).query))
         self.send_response(200)  # Отправка кода ответа
         self.send_header("Content-type", "text/html")  # Отправка типа данных, который будет передаваться
         self.end_headers()  # Завершение формирования заголовков ответа
         with open("index_4.html", "rb") as html_file:
-            self.wfile.write(html_file.read())  # Тело ответа
+            self.wfile.write(bytes(html_file.read()))  # Тело ответа
 
 
 if __name__ == "__main__":
